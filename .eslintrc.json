@@ -59,7 +59,7 @@
             "pattern": "@/components/**",
             "group": "internal",
             "position": "after"
-          },
+          }
         ],
         "newlines-between": "always"
       }
