@@ -1,7 +1,9 @@
-export function ProjectCard() {
+import { Project } from '@/app/projects/models';
+
+export function ProjectCard({ title }: Pick<Project, 'title'>) {
   return (
     <div>
-      <span>1234</span>
+      <span>{title}</span>
     </div>
   );
 }
