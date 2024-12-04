@@ -5,7 +5,7 @@ import { ProjectCard } from '../ProjectCard';
 export function ProjectsList({ projects }: { projects: Project[] }) {
   return (
     <div className="p-2">
-      {projects.map(({ id, title, applications, createdAt, updatedAt, description }) => (
+      {projects.map(({ id, title, applications, createdAt, description }) => (
         <ProjectCard
           key={id}
           id={id}
