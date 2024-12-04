@@ -2,10 +2,11 @@ import { format } from 'date-fns';
 import Link from 'next/link';
 import { FolderClosed, ChevronRight } from 'lucide-react';
 
-import { Project } from '@/app/projects/models';
+import { PROJECTS_ROUTES } from '@/app/projects/constants';
+import { BaseProject } from '@/app/projects/models';
 import { ProjectIndicator } from '@/app/projects/components/ProjectIndicator';
 
-interface ProjectCardProps extends Omit<Project, 'updatedAt'> {}
+interface ProjectCardProps extends Omit<BaseProject, 'updatedAt'> {}
 
 export function ProjectCard({ id, title, description, createdAt, applications }: ProjectCardProps) {
   return (
@@ -16,10 +17,9 @@ export function ProjectCard({ id, title, description, createdAt, applications }:
         </div>
         <div className="flex flex-col grow">
           <h2 className="flex items-center text-white text-xl font-semibold tracking-tight">
-            <Link href={`/applications/${id}`}>{title}</Link>
+            <Link href={PROJECTS_ROUTES.DETAILS(id)}>{title}</Link>
             <ChevronRight className="w-4 h-4 ml-1 text-white" />
           </h2>
-
           <p className="text-sm text-muted-foreground line-clamp-3">{description ?? 'Description'}</p>
           <div className="flex items-center mt-1.5">
             <span className="text-xs text-white">{`${(applications ?? []).length} Applications`}</span>

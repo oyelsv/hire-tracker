@@ -1,8 +1,15 @@
-import { StatusEnum } from '@/app/applications/models';
+import { StatusEnum, Application } from '@/app/applications/models';
 
-interface Application {
-  status: StatusEnum;
-  count: number;
+export interface BaseProject {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  title: string;
+  description?: string;
+  applications: {
+    status: StatusEnum;
+    count: number;
+  }[];
 }
 
 export interface Project {

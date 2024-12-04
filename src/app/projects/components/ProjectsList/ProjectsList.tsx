@@ -1,8 +1,8 @@
-import { Project } from '@/app/projects/models';
+import { BaseProject } from '@/app/projects/models';
 
 import { ProjectCard } from '../ProjectCard';
 
-export function ProjectsList({ projects }: { projects: Project[] }) {
+export function ProjectsList({ projects }: { projects: BaseProject[] }) {
   return (
     <div className="grid gap-y-4 p-4">
       {projects.map(({ id, title, applications, createdAt, description }) => (

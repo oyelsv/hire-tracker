@@ -1,9 +1,9 @@
 'use server';
 
-import { Project } from '@/app/projects/models';
+import { BaseProject } from '@/app/projects/models';
 import { StatusEnum } from '@/app/applications/models';
 
-export async function getProjects(): Promise<Project[]> {
+export async function getProjects(): Promise<BaseProject[]> {
   await new Promise((resolve) => {
     setTimeout(resolve, 1000);
   });
