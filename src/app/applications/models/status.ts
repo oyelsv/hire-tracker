@@ -8,3 +8,7 @@ export enum StatusEnum {
   Withdrawn = 6,
   Accepted = 7,
 }
+
+export type Status = {
+  [key in StatusEnum]: string;
+};

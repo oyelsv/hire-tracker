@@ -16,9 +16,14 @@ export async function getProjects(): Promise<Project[]> {
       title: 'Project #1',
       description: 'Project 1 description',
       applications: [
-        { name: 'Accepted', status: StatusEnum.Accepted, count: 1 },
-        { name: 'Final', status: StatusEnum.Final, count: 2 },
-        { name: 'Offer', status: StatusEnum.Offer, count: 3 },
+        { status: StatusEnum.Applied, count: 4 },
+        { status: StatusEnum.Accepted, count: 1 },
+        { status: StatusEnum.Screening, count: 2 },
+        { status: StatusEnum.Interview, count: 3 },
+        { status: StatusEnum.Final, count: 0 },
+        { status: StatusEnum.Rejected, count: 7 },
+        { status: StatusEnum.Withdrawn, count: 8 },
+        { status: StatusEnum.Offer, count: 3 },
       ],
     },
     {
@@ -26,7 +31,7 @@ export async function getProjects(): Promise<Project[]> {
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
       title: 'Job Search 2024',
-      applications: [{ name: 'Accepted', status: StatusEnum.Accepted, count: 1 }],
+      applications: [{ status: StatusEnum.Accepted, count: 1 }],
     },
   ];
 }
