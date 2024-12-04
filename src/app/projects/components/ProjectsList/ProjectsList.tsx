@@ -4,7 +4,7 @@ import { ProjectCard } from '../ProjectCard';
 
 export function ProjectsList({ projects }: { projects: Project[] }) {
   return (
-    <div className="p-2">
+    <div className="grid gap-y-4 p-4">
       {projects.map(({ id, title, applications, createdAt, description }) => (
         <ProjectCard
           key={id}
