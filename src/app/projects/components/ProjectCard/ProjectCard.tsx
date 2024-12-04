@@ -13,12 +13,10 @@ export function ProjectCard({ title, description, createdAt, applications }: Pro
         <div className="flex items-center justify-center shrink-0 w-10 h-10 rounded-full bg-blue-600/25">
           <FolderClosed className="w-6 h-6 text-blue-500" />
         </div>
-        <div className="flex flex-col grow gap-y-2">
-          <div>
-            <h2 className="text-white text-xl font-semibold tracking-tight">{title}</h2>
-            <p className="text-sm text-muted-foreground">{description ?? 'Description'}</p>
-          </div>
-          <div className="flex items-center">
+        <div className="flex flex-col grow">
+          <h2 className="text-white text-xl font-semibold tracking-tight">{title}</h2>
+          <p className="text-sm text-muted-foreground line-clamp-3">{description ?? 'Description'}</p>
+          <div className="flex items-center mt-1.5">
             <span className="text-xs text-white">{`${(applications ?? []).length} Applications`}</span>
             <span className="text-xs text-white pl-2 ml-auto">{format(createdAt, 'd MMM yyyy')}</span>
           </div>
