@@ -3,3 +3,7 @@ export enum WorkTypeEnum {
   Onsite = 1,
   Hybrid = 2,
 }
+
+export type WorkType = {
+  [key in WorkTypeEnum]: string;
+};
