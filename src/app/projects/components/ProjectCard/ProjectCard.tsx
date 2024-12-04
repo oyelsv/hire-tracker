@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import { FolderClosed } from 'lucide-react';
 
 import { Project } from '@/app/projects/models';
@@ -19,7 +20,7 @@ export function ProjectCard({ title, description, createdAt, applications }: Pro
           </div>
           <div className="flex items-center">
             <span className="text-xs text-white">{`${(applications ?? []).length} Applications`}</span>
-            <span className="text-xs text-white pl-2 ml-auto">{createdAt}</span>
+            <span className="text-xs text-white pl-2 ml-auto">{format(createdAt, 'd MMM yyyy')}</span>
           </div>
         </div>
       </div>
