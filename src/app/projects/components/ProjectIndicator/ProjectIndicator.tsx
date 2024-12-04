@@ -48,12 +48,12 @@ export function ProjectIndicator({ className, status, count }: ProjectIndicatorP
 
   return (
     <div className={cn(projectIndicatorStyles[status], className)}>
-      <div className="flex items-center mb-1">
+      <div className="flex items-center mb-1.5">
         {StatusIcon && <StatusIcon className="w-4 h-4 mr-1.5" />}
         <span className="grow text-white text-sm">{StatusEnum[status]}</span>
         <span className="flex items-center justify-center w-4 font-semibold text-sm text-current">{count}</span>
       </div>
-      <div className={cn('flex w-full h-1 bg-current rounded', count === 0 && 'opacity-25')} />
+      <div className={cn('flex w-full h-1 bg-current rounded-full', count === 0 && 'opacity-25')} />
     </div>
   );
 }
