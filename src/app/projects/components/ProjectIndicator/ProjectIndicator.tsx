@@ -17,12 +17,11 @@ const projectIndicatorStyles: Status = {
 };
 
 export interface ProjectIndicatorProps {
-  className?: string;
   status: StatusEnum;
   count: number;
 }
 
-export function ProjectIndicator({ className, status, count }: ProjectIndicatorProps) {
+export function ProjectIndicator({ status, count }: ProjectIndicatorProps) {
   const StatusIcon = useMemo(() => {
     switch (status) {
       case StatusEnum.Applied:
@@ -47,11 +46,11 @@ export function ProjectIndicator({ className, status, count }: ProjectIndicatorP
   }, [status]);
 
   return (
-    <div className={cn(projectIndicatorStyles[status], className)}>
+    <div className={cn(projectIndicatorStyles[status])}>
       <div className="flex items-center mb-1.5">
         {StatusIcon && <StatusIcon className="w-4 h-4 mr-1.5" />}
-        <span className="grow text-white text-sm">{StatusEnum[status]}</span>
-        <span className="flex items-center justify-center w-4 font-semibold text-sm text-current">{count}</span>
+        <span className="grow text-white text-xs">{StatusEnum[status]}</span>
+        <span className="flex items-center justify-center font-semibold text-xs text-current px-1">{count}</span>
       </div>
       <div className={cn('flex w-full h-1 bg-current rounded-full', count === 0 && 'opacity-25')} />
     </div>

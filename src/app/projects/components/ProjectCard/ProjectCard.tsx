@@ -25,9 +25,9 @@ export function ProjectCard({ title, description, createdAt, applications }: Pro
         </div>
       </div>
       {(applications ?? []) && (
-        <div className="grid grid-cols-2 gap-x-5">
+        <div className="grid grid-cols-2 gap-y-2.5 gap-x-5">
           {applications.map(({ status, count }) => (
-            <ProjectIndicator key={status} className="mb-2" status={status} count={count} />
+            <ProjectIndicator key={status} status={status} count={count} />
           ))}
         </div>
       )}
