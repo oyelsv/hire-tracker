@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 
 import { getProjectById } from '@/app/projects/services';
 import { PROJECTS_ROUTES } from '@/app/projects/constants';
+import { ApplicationCard } from '@/app/projects/components/ApplicationCard';
 
 import { buttonVariants } from '@/components/ui/button';
 
@@ -17,10 +18,10 @@ interface ProjectPageProps {
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { id = '' } = await params;
   // eslint-disable-next-line @typescript-eslint/no-unused-vars,unused-imports/no-unused-vars
-  const { title, ...project } = await getProjectById(id);
+  const { title, applications, ...project } = await getProjectById(id);
 
   return (
-    <div className="bg-white">
+    <div className="bg-white h-screen">
       <div className="flex items-center min-h-14 p-2 relative">
         <Link
           href={PROJECTS_ROUTES.ROOT}
@@ -33,6 +34,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </Link>
         <h1 className="text-lg font-semibold tracking-tight px-12 grow text-center">{title}</h1>
       </div>
+      {(applications ?? []) && (
+        <div className="grid gap-4 p-4">
+          {applications.map(({ id: applicationId, ...application }) => (
+            <ApplicationCard key={applicationId} id={applicationId} {...application} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
