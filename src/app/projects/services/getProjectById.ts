@@ -3,8 +3,8 @@
 import { Project } from '@/app/projects/models';
 import { EmploymentTypeEnum, WorkTypeEnum } from '@/app/applications/models';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars,unused-imports/no-unused-vars
 export async function getProjectById(id: string): Promise<Project> {
-  console.log(id);
   await new Promise((resolve) => {
     setTimeout(resolve, 1000);
   });
