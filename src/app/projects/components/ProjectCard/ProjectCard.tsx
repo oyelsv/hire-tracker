@@ -15,10 +15,11 @@ export function ProjectCard({ id, title, description, createdAt, applications }:
           <FolderClosed className="w-6 h-6 text-blue-500" />
         </div>
         <div className="flex flex-col grow">
-          <Link href={`/applications/${id}`} className="flex items-center">
-            <h2 className="text-white text-xl font-semibold tracking-tight">{title}</h2>
+          <h2 className="flex items-center text-white text-xl font-semibold tracking-tight">
+            <Link href={`/applications/${id}`}>{title}</Link>
             <ChevronRight className="w-4 h-4 ml-1 text-white" />
-          </Link>
+          </h2>
+
           <p className="text-sm text-muted-foreground line-clamp-3">{description ?? 'Description'}</p>
           <div className="flex items-center mt-1.5">
             <span className="text-xs text-white">{`${(applications ?? []).length} Applications`}</span>
