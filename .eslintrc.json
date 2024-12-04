@@ -6,6 +6,7 @@
   },
   "plugins": [
     "import",
+    "unused-imports",
     "prettier"
   ],
   "extends": [
@@ -91,6 +92,16 @@
     ],
     "@typescript-eslint/lines-between-class-members": 0,
     "@typescript-eslint/no-throw-literal": 0,
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
     "max-len": [
       "error",
       { "code": 120 }
