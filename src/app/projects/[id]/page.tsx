@@ -1,3 +1,5 @@
+import { getProjectById } from '@/app/projects/services';
+
 interface ProjectPageProps {
   params: Promise<{
     id?: string;
@@ -6,7 +8,9 @@ interface ProjectPageProps {
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { id = '' } = await params;
-  console.log(id);
+  const project = await getProjectById(id);
+
+  console.log(project);
 
   return (
     <div>

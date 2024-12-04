@@ -13,5 +13,5 @@ export interface Application {
   workType: WorkTypeEnum;
   employmentType: EmploymentTypeEnum[];
   salary: Salary;
-  description: string;
+  description?: string;
 }
