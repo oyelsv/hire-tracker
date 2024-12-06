@@ -1,1 +1,0 @@
-export { WorkTypeBadge } from './WorkTypeBadge';
