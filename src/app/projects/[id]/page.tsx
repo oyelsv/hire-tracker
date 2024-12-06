@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 
 import { getProjectById } from '@/app/projects/services';
 import { PROJECTS_ROUTES } from '@/app/projects/constants';
-import { ApplicationCard } from '@/app/projects/components/ApplicationCard';
+import { ApplicationPreviewCard } from '@/app/projects/components/ApplicationPreviewCard';
 
 import { buttonVariants } from '@/components/ui/button';
 
@@ -21,8 +21,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const { title, applications, ...project } = await getProjectById(id);
 
   return (
-    <div className="bg-white h-screen">
-      <div className="flex items-center min-h-14 p-2 relative">
+    <div className="h-screen">
+      <div className="flex items-center min-h-14 p-2 relative border-b-muted-foreground border-b">
         <Link
           href={PROJECTS_ROUTES.ROOT}
           className={cn(
@@ -30,14 +30,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             buttonVariants({ variant: 'ghost', size: 'icon' })
           )}
         >
-          <ChevronLeft className="w-6 h-6" />
+          <ChevronLeft className="w-6 h-6 text-white" />
         </Link>
-        <h1 className="text-lg font-semibold tracking-tight px-12 grow text-center">{title}</h1>
+        <h1 className="text-lg text-white font-semibold tracking-tight px-12 grow text-center">{title}</h1>
       </div>
       {(applications ?? []) && (
-        <div className="grid gap-4 p-4">
+        <div className="grid gap-y-3 p-4">
           {applications.map(({ id: applicationId, ...application }) => (
-            <ApplicationCard key={applicationId} id={applicationId} {...application} />
+            <ApplicationPreviewCard key={applicationId} id={applicationId} {...application} />
           ))}
         </div>
       )}
