@@ -1,3 +1,5 @@
+import { StatusEnum } from '@/app/applications/models/status';
+
 import { Salary } from './salary';
 import { Company } from './company';
 import { WorkTypeEnum } from './workType';
@@ -9,9 +11,11 @@ export interface Application {
   updatedAt: string;
   company: Company;
   position: string;
-  url: string;
-  workType: WorkTypeEnum;
-  employmentType: EmploymentTypeEnum[];
-  salary: Salary;
+  url?: string;
+  countryISOCode?: string; // alpha-2 country code (ISO 3166-1)
+  status: StatusEnum;
+  workType?: WorkTypeEnum | null;
+  employmentType?: EmploymentTypeEnum | null;
+  salary?: Salary;
   description?: string;
 }
