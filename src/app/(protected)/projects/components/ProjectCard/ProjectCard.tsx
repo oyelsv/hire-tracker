@@ -2,9 +2,9 @@ import { format } from 'date-fns';
 import Link from 'next/link';
 import { FolderClosed, ChevronRight } from 'lucide-react';
 
-import { PROJECTS_ROUTES } from '@/app/projects/constants';
-import { BaseProject } from '@/app/projects/models';
-import { ProjectIndicator } from '@/app/projects/components/ProjectIndicator';
+import { BaseProject } from '@/app/(protected)/projects/models';
+import { PROJECTS_ROUTES } from '@/app/(protected)/projects/constants';
+import { ProjectIndicator } from '@/app/(protected)/projects/components/ProjectIndicator';
 
 interface ProjectCardProps extends Omit<BaseProject, 'updatedAt'> {}
 

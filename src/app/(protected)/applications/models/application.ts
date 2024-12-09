@@ -1,4 +1,4 @@
-import { StatusEnum } from '@/app/applications/models/status';
+import { StatusEnum } from '@/app/(protected)/applications/models/status';
 
 import { Salary } from './salary';
 import { Company } from './company';

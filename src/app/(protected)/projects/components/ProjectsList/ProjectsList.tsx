@@ -1,5 +1,5 @@
-import { BaseProject } from '@/app/projects/models';
-import { ProjectCard } from '@/app/projects/components/ProjectCard';
+import { BaseProject } from '@/app/(protected)/projects/models';
+import { ProjectCard } from '@/app/(protected)/projects/components/ProjectCard';
 
 export function ProjectsList({ projects }: { projects: BaseProject[] }) {
   return (
