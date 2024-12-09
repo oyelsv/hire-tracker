@@ -2,6 +2,8 @@ import { ReactNode } from 'react';
 
 import { inter } from '@/lib/fonts';
 
+import { Header } from '@/app/components/Header';
+
 import type { Metadata } from 'next';
 
 import '@/styles/globals.css';
@@ -18,7 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased bg-black`}>{children}</body>
+      <body className={`${inter.className} antialiased`}>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
