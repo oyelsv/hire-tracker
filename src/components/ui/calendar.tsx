@@ -47,10 +47,10 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
       }}
       components={{
         // eslint-disable-next-line max-len
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-shadow,react/no-unstable-nested-components
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-shadow,react/no-unstable-nested-components,unused-imports/no-unused-vars
         IconLeft: ({ ...props }) => <ChevronLeft className="h-4 w-4" />,
         // eslint-disable-next-line max-len
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-shadow,react/no-unstable-nested-components
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-shadow,react/no-unstable-nested-components,unused-imports/no-unused-vars
         IconRight: ({ ...props }) => <ChevronRight className="h-4 w-4" />,
       }}
       {...props}

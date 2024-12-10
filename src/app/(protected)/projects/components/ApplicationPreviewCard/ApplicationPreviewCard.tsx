@@ -1,15 +1,15 @@
-import { Link as LinkIcon } from 'lucide-react';
 import Link from 'next/link';
+import { Link as LinkIcon } from 'lucide-react';
 
 import { cn, getFlagEmoji, getIntlDateFormat } from '@/lib/utils';
 
-import { Application, EmploymentTypeEnum, StatusEnum, WorkTypeEnum } from '@/app/applications/models';
+import { Application, EmploymentTypeEnum, StatusEnum, WorkTypeEnum } from '@/app/(protected)/applications/models';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 import { NeonBadge, NeonBadgeProps } from '@/components/NeonBadge';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
-const wrapperStyles = {
+const wrapperStyles: Record<StatusEnum, string> = {
   [StatusEnum.Applied]: 'before:bg-blue-700/15',
   [StatusEnum.Offer]: 'before:bg-green-700/15',
   [StatusEnum.Screening]: 'before:bg-yellow-700/15',
@@ -20,7 +20,7 @@ const wrapperStyles = {
   [StatusEnum.Withdrawn]: 'before:bg-gray-700/15',
 };
 
-const statusBadgeStyles = {
+const statusBadgeStyles: Record<StatusEnum, string> = {
   [StatusEnum.Applied]: 'bg-blue-700/15 text-blue-500',
   [StatusEnum.Offer]: 'bg-green-700/15 text-green-500',
   [StatusEnum.Screening]: 'bg-yellow-700/15 text-yellow-500',
@@ -77,7 +77,7 @@ export function ApplicationPreviewCard({
           'before:w-1.5 before:h-full before:absolute before:left-0 before:top-0',
           'before:rounded-bl-md before:rounded-tl-md',
         ],
-        wrapperStyles[status]
+        wrapperStyles[status as StatusEnum]
       )}
     >
       {/* Card Header */}
@@ -100,7 +100,7 @@ export function ApplicationPreviewCard({
               'shrink-0 self-baseline',
               'before:w-1.5 before:h-1.5 before:mr-1 before:rounded-full before:bg-current',
             ],
-            statusBadgeStyles[status]
+            statusBadgeStyles[status as StatusEnum]
           )}
         >
           {StatusEnum[status]}

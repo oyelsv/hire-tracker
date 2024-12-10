@@ -3,7 +3,7 @@ import { BadgeCheck, CircleCheck, CircleX, Drum, Phone, Send, Undo2, Video } fro
 
 import { cn } from '@/lib/utils';
 
-import { Status, StatusEnum } from '@/app/applications/models';
+import { Status, StatusEnum } from '@/app/(protected)/applications/models';
 
 const projectIndicatorStyles: Status = {
   [StatusEnum.Applied]: 'order-0 text-blue-500',
