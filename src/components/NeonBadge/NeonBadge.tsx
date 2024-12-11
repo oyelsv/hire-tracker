@@ -11,7 +11,7 @@ export const neonBadgeVariants = cva(badgeVariants(), {
       secondary: badgeVariants({ variant: 'secondary' }),
       outline: badgeVariants({ variant: 'outline' }),
       destructive: badgeVariants({ variant: 'destructive' }),
-      emerald: 'bg-green-700/15 text-green-500 hover:bg-green-700/15',
+      emerald: 'bg-green-700/10 text-green-600 hover:bg-green-700/15',
       sapphire: 'bg-blue-700/10 text-blue-500 hover:bg-green-700/15',
       amethyst: 'bg-purple-700/15 text-purple-500 hover:bg-purple-700/15',
     },

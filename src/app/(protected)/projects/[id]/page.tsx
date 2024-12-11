@@ -22,7 +22,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   return (
     <div className="h-screen">
-      <div className="flex items-center min-h-14 p-2 relative border-b-muted-foreground border-b">
+      <div className="flex items-center min-h-14 p-2 relative border-b">
         <Link
           href={PROJECTS_ROUTES.ROOT}
           className={cn(
@@ -30,12 +30,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             buttonVariants({ variant: 'ghost', size: 'icon' })
           )}
         >
-          <ChevronLeft className="w-6 h-6 text-white" />
+          <ChevronLeft className="w-6 h-6 text-foreground" />
         </Link>
-        <h1 className="text-lg text-white font-semibold tracking-tight px-12 grow text-center">{title}</h1>
+        <h1 className="text-lg text-foreground font-semibold tracking-tight px-12 grow text-center">{title}</h1>
       </div>
       {(applications ?? []) && (
-        <div className="grid gap-y-3 p-4">
+        <div className="grid gap-y-2 p-2">
           {applications.map(({ id: applicationId, ...application }) => (
             <ApplicationPreviewCard key={applicationId} id={applicationId} {...application} />
           ))}

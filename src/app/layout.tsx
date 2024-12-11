@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 import { inter } from '@/lib/fonts';
 
 import { Header } from '@/app/components/Header';
+import { ThemeProvider } from '@/app/components/ThemeProvider';
 
 import type { Metadata } from 'next';
 
@@ -21,8 +22,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-        <Header />
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <Header />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
