@@ -36,7 +36,7 @@ export default async function RootLayout({
               <AppSidebar />
               <div className="flex flex-col w-full">
                 <Header />
-                <main>{children}</main>
+                <main className="grow flex flex-col">{children}</main>
               </div>
             </SidebarProvider>
           </ThemeProvider>

@@ -11,7 +11,7 @@ interface ProjectCardProps extends Omit<BaseProject, 'updatedAt'> {}
 
 export function ProjectCard({ id, title, description, createdAt, applications }: ProjectCardProps) {
   return (
-    <div className="w-full bg-card rounded-md border pt-3 pb-5 px-4">
+    <div className="w-full bg-card rounded-md border pt-3 pb-5 px-4 drop-shadow self-baseline">
       <div className="flex gap-x-3 mb-4">
         <div className="flex items-center justify-center shrink-0 w-10 h-10 rounded-full bg-blue-600/25">
           <FolderClosed className="w-6 h-6 text-blue-500" />
