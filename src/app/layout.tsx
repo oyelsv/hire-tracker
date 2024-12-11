@@ -3,11 +3,14 @@ import { ReactNode } from 'react';
 import { inter } from '@/lib/fonts';
 
 import { Header } from '@/app/components/Header';
+import { AppSidebar } from '@/app/components/AppSidebar';
 import { ThemeProvider } from '@/app/components/ThemeProvider';
+
+import { SidebarProvider } from '@/components/ui/sidebar';
 
 import type { Metadata } from 'next';
 
-import '@/styles/globals.css';
+import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -23,8 +26,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <Header />
-          {children}
+          <SidebarProvider>
+            <AppSidebar />
+            <div className="flex flex-col w-full">
+              <Header />
+              <main>{children}</main>
+            </div>
+          </SidebarProvider>
         </ThemeProvider>
       </body>
     </html>
