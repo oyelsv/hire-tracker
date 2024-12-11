@@ -10,14 +10,14 @@ import { NeonBadge, NeonBadgeProps } from '@/components/NeonBadge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const wrapperStyles: Record<StatusEnum, string> = {
-  [StatusEnum.Applied]: 'before:bg-blue-700/65 dark:before:bg-blue-700/15',
-  [StatusEnum.Offer]: 'before:bg-green-700/50 dark:before:bg-green-700/15',
-  [StatusEnum.Screening]: 'before:bg-yellow-700/65 dark:before:bg-yellow-700/15',
-  [StatusEnum.Accepted]: 'before:bg-emerald-700/35 dark:before:bg-emerald-700/15',
-  [StatusEnum.Interview]: 'before:bg-purple-700/45 dark:before:bg-purple-700/15',
-  [StatusEnum.Rejected]: 'before:bg-red-700/65 dark:before:bg-red-700/15',
-  [StatusEnum.Final]: 'before:bg-indigo-700/65 dark:before:bg-indigo-700/15',
-  [StatusEnum.Withdrawn]: 'before:bg-gray-700/65 dark:before:bg-gray-700/15',
+  [StatusEnum.Applied]: 'before:bg-blue-700/65 dark:before:bg-blue-700/55',
+  [StatusEnum.Offer]: 'before:bg-green-700/50 dark:before:bg-green-700/55',
+  [StatusEnum.Screening]: 'before:bg-yellow-700/65 dark:before:bg-yellow-700/55',
+  [StatusEnum.Accepted]: 'before:bg-emerald-700/35 dark:before:bg-emerald-700/55',
+  [StatusEnum.Interview]: 'before:bg-purple-700/45 dark:before:bg-purple-700/55',
+  [StatusEnum.Rejected]: 'before:bg-red-700/65 dark:before:bg-red-700/55',
+  [StatusEnum.Final]: 'before:bg-indigo-700/65 dark:before:bg-indigo-700/55',
+  [StatusEnum.Withdrawn]: 'before:bg-gray-700/65 dark:before:bg-gray-700/55',
 };
 
 const statusBadgeStyles: Record<StatusEnum, string> = {
@@ -73,8 +73,8 @@ export function ApplicationPreviewCard({
     <div
       className={cn(
         [
-          'bg-card max-w-96 rounded-md drop-shadow-xl relative',
-          'before:w-1.5 before:h-full before:absolute before:left-0 before:top-0',
+          'bg-card max-w-96 rounded-md dark:border drop-shadow-md relative',
+          'before:w-1.5 before:h-[calc(100%+2px)] before:absolute before:left-[-1px] before:top-[-1px]',
           'before:rounded-bl-md before:rounded-tl-md',
         ],
         wrapperStyles[status as StatusEnum]
