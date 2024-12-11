@@ -2,7 +2,7 @@ import { PROJECTS_ROUTES } from '@/app/(protected)/projects/constants';
 
 export const publicRoutes = ['/about'];
 
-export const authRoutes = ['/auth/login'];
+export const authRoutes = ['/auth/login', '/auth/error'];
 
 export const apiAuthPrefix = '/api/auth';
 

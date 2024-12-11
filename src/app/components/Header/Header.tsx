@@ -18,7 +18,7 @@ export function Header() {
       <Button variant="ghost" size="icon" onClick={toggleSidebar}>
         <Menu />
       </Button>
-      {user && <UserAvatar name={user?.name} image={user?.image} email={user?.email} />}
+      {user && <UserAvatar {...user} />}
     </div>
   );
 }

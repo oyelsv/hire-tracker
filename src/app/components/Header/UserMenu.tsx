@@ -18,7 +18,7 @@ import {
 
 const menuItemClasses = 'hover:cursor-pointer';
 
-export function UserAvatar({ name, image, email }: User) {
+export function UserAvatar({ name, image }: User) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -28,8 +28,8 @@ export function UserAvatar({ name, image, email }: User) {
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end">
-        {email && (
-          <DropdownMenuLabel className="font-medium text-muted-foreground truncate">👋 {email}</DropdownMenuLabel>
+        {name && (
+          <DropdownMenuLabel className="font-medium text-muted-foreground truncate">👋 {name}</DropdownMenuLabel>
         )}
         <DropdownMenuSeparator />
         <DropdownMenuGroup>

@@ -10,5 +10,9 @@ export const {
 } = NextAuth({
   // @TODO: PrismaAdapter,
   // strategy: 'jwt',
+  pages: {
+    signIn: '/auth/login',
+    error: '/auth/error',
+  },
   ...authConfig,
 });
