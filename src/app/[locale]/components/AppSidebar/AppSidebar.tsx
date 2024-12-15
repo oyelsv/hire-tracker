@@ -18,7 +18,7 @@ import {
 } from '@/components/ui/sidebar';
 import { Button, buttonVariants } from '@/components/ui/button';
 
-import packageJson from '../../../../package.json';
+import packageJson from '../../../../../package.json';
 
 export function AppSidebar() {
   const user = useCurrentUser();

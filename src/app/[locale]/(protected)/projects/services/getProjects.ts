@@ -1,7 +1,7 @@
 'use server';
 
-import { BaseProject } from '@/app/(protected)/projects/models';
-import { StatusEnum } from '@/app/(protected)/applications/models';
+import { BaseProject } from '@/app/[locale]/(protected)/projects/models';
+import { StatusEnum } from '@/app/[locale]/(protected)/applications/models';
 
 export async function getProjects(): Promise<BaseProject[]> {
   await new Promise((resolve) => {

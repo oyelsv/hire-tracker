@@ -46,6 +46,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps): Promi
         <CardContent className="grid gap-y-3">
           {Object.values(providerMap).map((provider) => (
             <form
+              key={provider.id}
               /* eslint-disable-next-line consistent-return */
               action={async () => {
                 'use server';

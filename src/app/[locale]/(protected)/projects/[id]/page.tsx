@@ -3,9 +3,9 @@ import { ChevronLeft } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 
-import { getProjectById } from '@/app/(protected)/projects/services';
-import { PROJECTS_ROUTES } from '@/app/(protected)/projects/constants';
-import { ApplicationPreviewCard } from '@/app/(protected)/projects/components/ApplicationPreviewCard';
+import { getProjectById } from '@/app/[locale]/(protected)/projects/services';
+import { PROJECTS_ROUTES } from '@/app/[locale]/(protected)/projects/constants';
+import { ApplicationPreviewCard } from '@/app/[locale]/(protected)/projects/components/ApplicationPreviewCard';
 
 import { buttonVariants } from '@/components/ui/button';
 

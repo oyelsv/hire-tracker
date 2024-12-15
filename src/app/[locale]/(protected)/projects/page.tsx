@@ -1,10 +1,13 @@
-import { getProjects } from '@/app/(protected)/projects/services';
-import { ProjectCard } from '@/app/(protected)/projects/components/ProjectCard';
+import { getTranslations } from 'next-intl/server';
+
+import { getProjects } from '@/app/[locale]/(protected)/projects/services';
+import { ProjectCard } from '@/app/[locale]/(protected)/projects/components/ProjectCard';
 
 import { Button } from '@/components/ui/button';
 
 export default async function ProjectsPage() {
   const projects = await getProjects();
+  const t = await getTranslations({ namespace: 'projects' });
 
   return (
     <>
@@ -22,7 +25,7 @@ export default async function ProjectsPage() {
       </div>
       <div className="p-2 py-4 sticky bottom-0 bg-background/85 shadow-[0_-2px_4px_0_rgba(0,0,0,0.08)]">
         <Button className="w-full" size="lg">
-          Add new project
+          {t('addNew')}
         </Button>
       </div>
     </>

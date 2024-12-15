@@ -1,7 +1,7 @@
 'use server';
 
-import { Project } from '@/app/(protected)/projects/models';
-import { EmploymentTypeEnum, StatusEnum, WorkTypeEnum } from '@/app/(protected)/applications/models';
+import { Project } from '@/app/[locale]/(protected)/projects/models';
+import { EmploymentTypeEnum, StatusEnum, WorkTypeEnum } from '@/app/[locale]/(protected)/applications/models';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars,unused-imports/no-unused-vars
 export async function getProjectById(id: string): Promise<Project> {

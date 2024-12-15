@@ -3,7 +3,12 @@ import { Link as LinkIcon } from 'lucide-react';
 
 import { cn, getFlagEmoji, getIntlDateFormat } from '@/lib/utils';
 
-import { Application, EmploymentTypeEnum, StatusEnum, WorkTypeEnum } from '@/app/(protected)/applications/models';
+import {
+  Application,
+  EmploymentTypeEnum,
+  StatusEnum,
+  WorkTypeEnum,
+} from '@/app/[locale]/(protected)/applications/models';
 
 import { Separator } from '@/components/ui/separator';
 import { NeonBadge, NeonBadgeProps } from '@/components/NeonBadge';

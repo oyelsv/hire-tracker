@@ -3,9 +3,9 @@ import { FolderClosed, ChevronRight } from 'lucide-react';
 
 import { getIntlDateFormat } from '@/lib/utils';
 
-import { BaseProject } from '@/app/(protected)/projects/models';
-import { PROJECTS_ROUTES } from '@/app/(protected)/projects/constants';
-import { ProjectIndicator } from '@/app/(protected)/projects/components/ProjectIndicator';
+import { BaseProject } from '@/app/[locale]/(protected)/projects/models';
+import { PROJECTS_ROUTES } from '@/app/[locale]/(protected)/projects/constants';
+import { ProjectIndicator } from '@/app/[locale]/(protected)/projects/components/ProjectIndicator';
 
 interface ProjectCardProps extends Omit<BaseProject, 'updatedAt'> {}
 
