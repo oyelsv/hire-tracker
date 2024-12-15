@@ -1,11 +1,13 @@
 'use client';
 
+import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { signOut } from 'next-auth/react';
 import { Coffee, Linkedin, Github, LogOut, Moon, Sun } from 'lucide-react';
-import Link from 'next/link';
 
 import { useCurrentUser } from '@/hooks/useCurrentUser';
+
+import { LocaleSwitcher } from '@/app/components/LocaleSwitcher';
 
 import {
   Sidebar,
@@ -18,7 +20,7 @@ import {
 } from '@/components/ui/sidebar';
 import { Button, buttonVariants } from '@/components/ui/button';
 
-import packageJson from '../../../../../package.json';
+import packageJson from '../../../../package.json';
 
 export function AppSidebar() {
   const user = useCurrentUser();
@@ -28,19 +30,13 @@ export function AppSidebar() {
     /* @TODO: make Sidebar floating */
     <Sidebar>
       <SidebarHeader>
-        <div className="flex w-full items-center pl-2">
-          <div>Logo</div>
+        <div className="flex w-full items-center">
+          <LocaleSwitcher />
           <div className="ml-auto">
-            {theme === 'light' && (
-              <Button size="icon" variant="outline" onClick={() => setTheme('dark')}>
-                <Moon />
-              </Button>
-            )}
-            {theme === 'dark' && (
-              <Button size="icon" variant="ghost" onClick={() => setTheme('light')}>
-                <Sun />
-              </Button>
-            )}
+            {/* @TODO: fix theme switcher */}
+            <Button size="icon" variant="outline" onClick={() => setTheme('dark')}>
+              {theme !== 'light' ? <Sun /> : <Moon />}
+            </Button>
           </div>
         </div>
       </SidebarHeader>

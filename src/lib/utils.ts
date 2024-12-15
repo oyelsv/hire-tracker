@@ -6,6 +6,10 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function getFlagEmoji(countryCode: string) {
+  if (countryCode.toLowerCase() === 'en') {
+    return '🇺🇸';
+  }
+
   const codePoints = countryCode
     .toUpperCase()
     .split('')
