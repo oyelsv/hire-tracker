@@ -1,47 +1,62 @@
+import { NextRequest, NextResponse } from 'next/server';
+import createMiddleware from 'next-intl/middleware';
 import NextAuth, { Session } from 'next-auth';
-import { NextRequest } from 'next/server';
 
 import authConfig from '@/auth.config';
-import { apiAuthPrefix, authRoutes, BASE_SEGMENT_REDIRECT, DEFAULT_LOGIN_REDIRECT, publicRoutes } from '@/routes';
+
+import { locales, routing } from './i18n/routing';
+import { BASE_SEGMENT_REDIRECT, DEFAULT_LOGIN_REDIRECT, authRoutes, publicRoutes } from './routes';
 
 const { auth } = NextAuth(authConfig);
 
-export default auth((req: NextRequest & { auth: Session | null }): Response | void => {
-  const { nextUrl } = req;
-  const isLoggedIn = !!req.auth;
+const intlMiddleware = createMiddleware(routing);
 
-  const isAuthRoute = authRoutes.includes(nextUrl.pathname);
-  const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
-  const isApiRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
+const testPathnameRegex = (pages: string[], pathName: string): boolean => {
+  const pathsWithParams = pages.map((p) => p.replace(/\[.*?]/g, '[^/]+'));
 
-  if (isApiRoute) {
-    return;
+  return RegExp(
+    `^(/(${locales.join('|')}))?(${pathsWithParams.flatMap((p) => (p === '/' ? ['', '/'] : p)).join('|')})/?$`,
+    'i'
+  ).test(pathName);
+};
+
+const authMiddleware = auth((req: NextRequest & { auth: Session | null }) => {
+  const { nextUrl, url, auth: authSession } = req;
+  const isLogged = !!authSession;
+  const isAuthPage = testPathnameRegex(authRoutes, nextUrl.pathname);
+
+  if (!isLogged && !isAuthPage) {
+    return NextResponse.redirect(new URL('/auth/login', nextUrl));
   }
 
-  if (isAuthRoute) {
-    if (isLoggedIn) {
-      // eslint-disable-next-line consistent-return
-      return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
-    }
-
-    return;
-  }
-
-  if (!isLoggedIn && !isPublicRoute) {
-    // eslint-disable-next-line consistent-return
-    return Response.redirect(new URL('/auth/login', nextUrl));
+  if (isLogged && isAuthPage) {
+    return NextResponse.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
   }
 
   if (nextUrl.pathname === '/') {
-    // eslint-disable-next-line consistent-return
-    return Response.redirect(new URL(BASE_SEGMENT_REDIRECT, req.url));
+    return Response.redirect(new URL(BASE_SEGMENT_REDIRECT, url));
   }
+
+  return intlMiddleware(req);
 });
 
-export const config = {
-  matcher: [
-    // eslint-disable-next-line max-len
-    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
-    '/(api|trpc)(.*)',
-  ],
+const middleware = (req: NextRequest) => {
+  const isPublicPage = testPathnameRegex(publicRoutes, req.nextUrl.pathname);
+  const isAuthPage = testPathnameRegex(authRoutes, req.nextUrl.pathname);
+
+  if (isAuthPage) {
+    return (authMiddleware as any)(req);
+  }
+
+  if (isPublicPage) {
+    return intlMiddleware(req);
+  }
+
+  return (authMiddleware as any)(req);
 };
+
+export const config = {
+  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)'],
+};
+
+export default middleware;
