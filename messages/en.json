@@ -1,5 +1,16 @@
 {
   "projects": {
-    "addNew": "Add new project"
+    "tabName": "Your projects",
+    "description": "Track your applications and interviews",
+    "openGraph": {
+      "title": "Track your applications and interviews Open Graph title",
+      "description": "Track your applications and interviews Open Graph description"
+    },
+    "actions": {
+      "add": "Add project",
+      "edit": "Edit project",
+      "delete": "Delete project",
+      "view": "View project"
+    }
   }
 }
