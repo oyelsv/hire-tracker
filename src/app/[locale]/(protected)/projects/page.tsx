@@ -9,13 +9,12 @@ import { Button } from '@/components/ui/button';
 
 import type { Metadata } from 'next';
 
-type MetadataProps = {
-  params: Promise<{ locale: string }>;
-};
+type PageParamsProps = Promise<{ locale: string }>;
 
-export default async function ProjectsPage() {
+export default async function ProjectsPage({ params }: { params: PageParamsProps }) {
+  const { locale } = await params;
   const projects = await getProjects();
-  const t = await getTranslations({ namespace: 'projects' });
+  const t = await getTranslations({ locale, namespace: 'projects' });
 
   return (
     <>
@@ -24,6 +23,7 @@ export default async function ProjectsPage() {
           <ProjectCard
             key={id}
             id={id}
+            locale={locale}
             title={title}
             description={description}
             applications={applications}
@@ -44,16 +44,16 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata({ params }: MetadataProps): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: PageParamsProps }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'projects' });
 
   return {
     title: {
-      default: t('tabName'),
-      template: `%s | ${t('tabName')}`,
+      default: t('tabName', { value: 'projects' }),
+      template: `%s | ${t('tabName', { value: 'projects' })}`,
     },
-    description: t('description'),
+    description: t('description', { value: 'projects' }),
     openGraph: {
       title: t('openGraph.title'),
       description: t('openGraph.description'),

@@ -1,5 +1,11 @@
 {
   "auth": {
+    "tabName": "Sign in",
+    "description": "Sign in to track your applications and interviews",
+    "openGraph": {
+      "title": "Sign in to track your applications and interviews",
+      "description": "Sign in to track your applications and interviews"
+    },
     "card": {
       "title": "Sign in",
       "description": "Sign in to track your applications and interviews"

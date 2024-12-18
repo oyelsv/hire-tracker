@@ -1,7 +1,10 @@
 import Link from 'next/link';
 import { ChevronLeft } from 'lucide-react';
+import { getTranslations } from 'next-intl/server';
 
 import { cn } from '@/lib/utils';
+
+import { routing } from '@/i18n/routing';
 
 import { getProjectById } from '@/app/[locale]/(protected)/projects/services';
 import { PROJECTS_ROUTES } from '@/app/[locale]/(protected)/projects/constants';
@@ -9,14 +12,12 @@ import { ApplicationPreviewCard } from '@/app/[locale]/(protected)/projects/comp
 
 import { buttonVariants } from '@/components/ui/button';
 
-interface ProjectPageProps {
-  params: Promise<{
-    id?: string;
-  }>;
-}
+import type { Metadata } from 'next';
 
-export default async function ProjectPage({ params }: ProjectPageProps) {
-  const { id = '' } = await params;
+type ProjectPageProps = Promise<{ locale: string; id?: string }>;
+
+export default async function ProjectPage({ params }: { params: ProjectPageProps }) {
+  const { id = '', locale } = await params;
   // eslint-disable-next-line @typescript-eslint/no-unused-vars,unused-imports/no-unused-vars
   const { title, applications, ...project } = await getProjectById(id);
 
@@ -37,12 +38,33 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       {(applications ?? []) && (
         <div className="grid gap-y-2 p-2">
           {applications.map(({ id: applicationId, ...application }) => (
-            <ApplicationPreviewCard key={applicationId} id={applicationId} {...application} />
+            <ApplicationPreviewCard key={applicationId} id={applicationId} locale={locale} {...application} />
           ))}
         </div>
       )}
     </div>
   );
+}
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({ params }: { params: ProjectPageProps }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'projects' });
+
+  return {
+    title: {
+      default: t('tabName', { value: 'project' }),
+      template: `%s | ${t('tabName', { value: 'project' })}`,
+    },
+    description: t('description', { value: 'project' }),
+    openGraph: {
+      title: t('openGraph.title'),
+      description: t('openGraph.description'),
+    },
+  };
 }
 
 ProjectPage.displayName = 'ProjectPage';

@@ -18,8 +18,8 @@ export function LocaleSwitcher() {
   const [isPending, startTransition] = useTransition();
 
   const onSelectChange = (value: string) => {
-    console.log(value);
     const nextLocale = value as Locale;
+
     startTransition(() => {
       router.replace(
         // @ts-expect-error - TypeScript will validate that only known `params`

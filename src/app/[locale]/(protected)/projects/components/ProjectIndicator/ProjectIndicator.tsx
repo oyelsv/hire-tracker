@@ -1,5 +1,5 @@
-import { useMemo } from 'react';
 import { BadgeCheck, CircleCheck, CircleX, Drum, Phone, Send, Undo2, Video } from 'lucide-react';
+import { getTranslations } from 'next-intl/server';
 
 import { cn } from '@/lib/utils';
 
@@ -19,37 +19,44 @@ const projectIndicatorStyles: Status = {
 export interface ProjectIndicatorProps {
   status: StatusEnum;
   count: number;
+  locale: string;
 }
 
-export function ProjectIndicator({ status, count }: ProjectIndicatorProps) {
-  const StatusIcon = useMemo(() => {
-    switch (status) {
-      case StatusEnum.Applied:
-        return Send;
-      case StatusEnum.Screening:
-        return Phone;
-      case StatusEnum.Interview:
-        return Video;
-      case StatusEnum.Final:
-        return Drum;
-      case StatusEnum.Offer:
-        return BadgeCheck;
-      case StatusEnum.Accepted:
-        return CircleCheck;
-      case StatusEnum.Rejected:
-        return CircleX;
-      case StatusEnum.Withdrawn:
-        return Undo2;
-      default:
-        return null;
-    }
-  }, [status]);
+function StatusIcon(status: StatusEnum) {
+  const className = 'w-4 h-4 mr-1.5 shrink-0';
+
+  switch (status) {
+    case StatusEnum.Applied:
+      return <Send className={className} />;
+    case StatusEnum.Screening:
+      return <Phone className={className} />;
+    case StatusEnum.Interview:
+      return <Video className={className} />;
+    case StatusEnum.Final:
+      return <Drum className={className} />;
+    case StatusEnum.Offer:
+      return <BadgeCheck className={className} />;
+    case StatusEnum.Accepted:
+      return <CircleCheck className={className} />;
+    case StatusEnum.Rejected:
+      return <CircleX className={className} />;
+    case StatusEnum.Withdrawn:
+      return <Undo2 className={className} />;
+    default:
+      return null;
+  }
+}
+
+export async function ProjectIndicator({ locale, status, count }: ProjectIndicatorProps) {
+  const t = await getTranslations({ locale, namespace: 'projects.card.status' });
 
   return (
     <div className={cn(projectIndicatorStyles[status])}>
       <div className="flex items-center mb-1.5 pl-0.5">
-        {StatusIcon && <StatusIcon className="w-4 h-4 mr-1.5" />}
-        <span className="grow text-foreground text-xs">{StatusEnum[status]}</span>
+        {StatusIcon(status)}
+        {/* @TODO: fix ts error */}
+        {/* @ts-ignore */}
+        <span className="grow text-foreground text-xs truncate">{t(StatusEnum[status].toLowerCase())}</span>
         <span className="flex items-center justify-center font-semibold text-xs text-current px-1">{count}</span>
       </div>
       <div className={cn('flex w-full h-1 bg-current rounded-full', count === 0 && 'opacity-25')} />

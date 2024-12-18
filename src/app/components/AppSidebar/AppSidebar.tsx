@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { signOut } from 'next-auth/react';
+import { useTranslations } from 'next-intl';
 import { Coffee, Linkedin, Github, LogOut, Moon, Sun } from 'lucide-react';
 
 import { useCurrentUser } from '@/hooks/useCurrentUser';
@@ -25,12 +26,14 @@ import packageJson from '../../../../package.json';
 export function AppSidebar() {
   const user = useCurrentUser();
   const { theme, setTheme } = useTheme();
+  const t = useTranslations('sidebar');
 
   return (
     /* @TODO: make Sidebar floating */
     <Sidebar>
       <SidebarHeader>
         <div className="flex w-full items-center">
+          {/* @TODO: fix disable auto focus when sidebar is opened */}
           <LocaleSwitcher />
           <div className="ml-auto">
             {/* @TODO: fix theme switcher */}
@@ -50,13 +53,13 @@ export function AppSidebar() {
       <SidebarFooter>
         <div>
           <small className="text-xs font-medium leading-none">
-            <span className="after:content-['\a0']">Developed by:</span>
+            <span className="after:content-['\a0']">{t('developedBy')}:</span>
             <a href="mailto:oyelsv@gmail.com" className="underline">
               Oleksandr Yeliseev
             </a>
           </small>
           <div className="">
-            <span className="text-sm">My socials:</span>
+            <span className="text-sm">{t('socials')}:</span>
             <div className="flex gap-x-1 mt-1">
               <Link
                 target="_blank"
@@ -75,14 +78,15 @@ export function AppSidebar() {
             </div>
           </div>
         </div>
-        <SidebarSeparator />
+        <SidebarSeparator className="m-0" />
         <div>
           <Link
             href="https://github.com/oyelsv/hire-tracker/releases"
             target="_blank"
             className="text-xs text-muted-foreground"
           >
-            Version: <span className="underline">{packageJson.version}</span>
+            <span className="after:content-['\a0']">{t('version')}:</span>
+            <span className="underline">{packageJson.version}</span>
           </Link>
         </div>
         <div className="flex justify-between">

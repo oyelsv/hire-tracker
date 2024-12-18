@@ -1,15 +1,19 @@
 import Link from 'next/link';
 import { FolderClosed, ChevronRight } from 'lucide-react';
-
-import { getIntlDateFormat } from '@/lib/utils';
+import { getTranslations, getFormatter } from 'next-intl/server';
 
 import { BaseProject } from '@/app/[locale]/(protected)/projects/models';
 import { PROJECTS_ROUTES } from '@/app/[locale]/(protected)/projects/constants';
 import { ProjectIndicator } from '@/app/[locale]/(protected)/projects/components/ProjectIndicator';
 
-interface ProjectCardProps extends Omit<BaseProject, 'updatedAt'> {}
+interface ProjectCardProps extends Omit<BaseProject, 'updatedAt'> {
+  locale: string;
+}
 
-export function ProjectCard({ id, title, description, createdAt, applications }: ProjectCardProps) {
+export async function ProjectCard({ id, title, description, createdAt, applications, locale }: ProjectCardProps) {
+  const format = await getFormatter();
+  const t = await getTranslations({ locale, namespace: 'projects.card' });
+
   return (
     <div className="w-full bg-card rounded-md border pt-3 pb-5 px-4 drop-shadow self-baseline">
       <div className="flex gap-x-3 mb-4">
@@ -21,12 +25,14 @@ export function ProjectCard({ id, title, description, createdAt, applications }:
             <Link href={PROJECTS_ROUTES.DETAILS(id)}>{title}</Link>
             <ChevronRight className="w-4 h-4 ml-1 text-foreground" />
           </h2>
-          <p className="text-sm text-muted-foreground line-clamp-3">{description ?? 'Description'}</p>
+          <p className="text-sm text-muted-foreground line-clamp-3">{description ?? t('description')}</p>
           <div className="flex items-center mt-1 text-foreground">
-            <span className="text-xs">{`${(applications ?? []).length} Applications`}</span>
+            <span className="text-xs">{`${applications?.length ?? 0} ${t('applications', {
+              count: applications?.length ?? 0,
+            })}`}</span>
             <span className="text-xs pl-2 ml-auto">
-              {/* @TODO add dynamic html-lang */}
-              {getIntlDateFormat(new Date(createdAt))}
+              {/* @TODO: lang formatter doesn't work */}
+              {format.dateTime(new Date(createdAt), { year: 'numeric', month: 'short', day: 'numeric' })}
             </span>
           </div>
         </div>
@@ -34,7 +40,7 @@ export function ProjectCard({ id, title, description, createdAt, applications }:
       {(applications ?? []) && (
         <div className="grid grid-cols-2 gap-y-2.5 gap-x-5">
           {applications.map(({ status, count }) => (
-            <ProjectIndicator key={status} status={status} count={count} />
+            <ProjectIndicator key={status} locale={locale} status={status} count={count} />
           ))}
         </div>
       )}
