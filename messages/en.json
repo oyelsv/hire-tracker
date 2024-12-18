@@ -1,7 +1,14 @@
 {
+  "auth": {
+    "card": {
+      "title": "Sign in",
+      "description": "Sign in to track your applications and interviews"
+    },
+    "signInWith": "Sign in via {provider}"
+  },
   "projects": {
-    "tabName": "Your projects",
-    "description": "Track your applications and interviews",
+    "tabName": "{value, select, projects {Projects} project {Applications} other {Projects}}",
+    "description": "{value, select, projects {Projects} project {Applications} other {Projects}}",
     "openGraph": {
       "title": "Track your applications and interviews Open Graph title",
       "description": "Track your applications and interviews Open Graph description"
@@ -11,6 +18,56 @@
       "edit": "Edit project",
       "delete": "Delete project",
       "view": "View project"
+    },
+    "card": {
+      "description": "Description",
+      "applications": "{count, plural, =0 {applications} =1 {application} other {applications}}",
+      "status": {
+        "applied": "Applied",
+        "interview": "Interview",
+        "screening": "Screening",
+        "offer": "Offer",
+        "rejected": "Rejected",
+        "accepted": "Accepted",
+        "withdrawn": "Withdrawn",
+        "final": "Final stage"
+      }
     }
+  },
+  "application": {
+    "card": {
+      "status": {
+        "applied": "Applied",
+        "screening": "Screening",
+        "interview": "Interview",
+        "final": "Final stage",
+        "offer": "Offer",
+        "rejected": "Rejected",
+        "withdrawn": "Withdrawn",
+        "accepted": "Accepted"
+      },
+      "workType": {
+        "remote": "Remote",
+        "onsite": "Onsite",
+        "hybrid": "Hybrid"
+      },
+      "employmentType": {
+        "fulltime": "Full-time",
+        "parttime": "Part-time",
+        "contract": "Contract",
+        "internship": "Internship"
+      }
+    }
+  },
+  "header": {
+    "menu": {
+      "settings": "Settings",
+      "signout": "Sign out"
+    }
+  },
+  "sidebar": {
+    "developedBy": "Developed by",
+    "socials": "Socials",
+    "version": "Version"
   }
 }
