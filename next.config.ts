@@ -1,5 +1,10 @@
+import createNextIntlPlugin from 'next-intl/plugin';
+
 import type { NextConfig } from 'next';
 
+const withNextIntl = createNextIntlPlugin();
+
+/** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
   webpack(config) {
     // @ts-ignore
@@ -23,6 +28,16 @@ const nextConfig: NextConfig = {
 
     return config;
   },
+  images: {
+    remotePatterns: [
+      {
+        hostname: '*.googleusercontent.com',
+      },
+      {
+        hostname: 'avatars.githubusercontent.com',
+      },
+    ],
+  },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

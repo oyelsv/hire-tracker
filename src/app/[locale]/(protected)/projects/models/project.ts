@@ -1,4 +1,4 @@
-import { StatusEnum, Application } from '@/app/(protected)/applications/models';
+import { StatusEnum, Application } from '@/app/[locale]/(protected)/applications/models';
 
 export interface BaseProject {
   id: string;

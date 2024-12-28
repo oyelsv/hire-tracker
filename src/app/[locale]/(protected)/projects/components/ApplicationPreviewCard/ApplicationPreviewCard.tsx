@@ -1,9 +1,15 @@
 import Link from 'next/link';
 import { Link as LinkIcon } from 'lucide-react';
+import { getTranslations, getFormatter } from 'next-intl/server';
 
-import { cn, getFlagEmoji, getIntlDateFormat } from '@/lib/utils';
+import { cn, getFlagEmoji } from '@/lib/utils';
 
-import { Application, EmploymentTypeEnum, StatusEnum, WorkTypeEnum } from '@/app/(protected)/applications/models';
+import {
+  Application,
+  StatusEnum,
+  WorkTypeEnum,
+  EmploymentTypeEnum,
+} from '@/app/[locale]/(protected)/applications/models';
 
 import { Separator } from '@/components/ui/separator';
 import { NeonBadge, NeonBadgeProps } from '@/components/NeonBadge';
@@ -57,8 +63,9 @@ const getEmploymentTypeBadge = (employmentType: EmploymentTypeEnum | null | unde
   }
 };
 
-export function ApplicationPreviewCard({
+export async function ApplicationPreviewCard({
   // id,
+  locale,
   company,
   position,
   createdAt,
@@ -68,7 +75,10 @@ export function ApplicationPreviewCard({
   countryISOCode,
   workType = null,
   salary,
-}: Application) {
+}: Application & { locale: string }) {
+  const format = await getFormatter();
+  const t = await getTranslations({ locale, namespace: 'application.card' });
+
   return (
     <div
       className={cn(
@@ -103,25 +113,28 @@ export function ApplicationPreviewCard({
             statusBadgeStyles[status as StatusEnum]
           )}
         >
-          {StatusEnum[status]}
+          {t(`status.${StatusEnum[status as StatusEnum].toLowerCase()}`)}
         </span>
       </div>
       {/* Card content */}
       <div className="flex items-center px-4 space-x-1.5 mt-3">
-        {workType !== null && <NeonBadge variant={getWorkTypeBadge(workType)}>{WorkTypeEnum[workType]}</NeonBadge>}
+        {workType !== null && (
+          <NeonBadge variant={getWorkTypeBadge(workType)}>
+            {t(`workType.${WorkTypeEnum[workType].toLowerCase()}`)}
+          </NeonBadge>
+        )}
         {workType !== null && employmentType !== null && <Separator className="h-3" orientation="vertical" />}
         {employmentType !== null && (
-          <NeonBadge variant={getEmploymentTypeBadge(employmentType)}>{EmploymentTypeEnum[employmentType]}</NeonBadge>
+          <NeonBadge variant={getEmploymentTypeBadge(employmentType)}>
+            {t(`employmentType.${EmploymentTypeEnum[employmentType].toLowerCase()}`)}
+          </NeonBadge>
         )}
       </div>
       {/* Card Footer */}
       <div className="flex items-center mt-2 pl-4 pr-3 pb-2">
         <div className="flex items-center space-x-1.5 text-xs pl-0.5">
           <span className="flex items-center space-x-1.5 shrink-0 text-foreground">
-            <span className="mt-0.5 font-semibold">
-              {/* @TODO add dynamic html-lang */}
-              {getIntlDateFormat(new Date(createdAt))}
-            </span>
+            <span className="mt-0.5 font-semibold">{format.dateTime(new Date(createdAt), 'short')}</span>
           </span>
           {countryISOCode && (
             <>
@@ -140,12 +153,7 @@ export function ApplicationPreviewCard({
         </div>
         {salary?.currency && salary?.amount && (
           <p className="font-bold text-green-600 pl-2 ml-auto">
-            {/* @TODO add dynamic html-lang */}
-            {new Intl.NumberFormat('en-US', {
-              style: 'currency',
-              currency: salary.currency,
-              minimumFractionDigits: 0,
-            }).format(salary.amount)}
+            {format.number(salary.amount, { style: 'currency', currency: salary.currency, minimumFractionDigits: 0 })}
           </p>
         )}
       </div>

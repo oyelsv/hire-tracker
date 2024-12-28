@@ -1,0 +1,79 @@
+{
+  "auth": {
+    "tabName": "Увійти",
+    "description": "Увійдіть, щоб відстежувати ваші відгуки та співбесіди",
+    "openGraph": {
+      "title": "Увійти, щоб відстежувати ваші відгуки та співбесіди",
+      "description": "Увійти, щоб відстежувати ваші відгуки та співбесіди"
+    },
+    "card": {
+      "title": "Увійти",
+      "description": "Увійдіть, щоб відстежувати ваші відгуки та співбесіди"
+    },
+    "signInWith": "Увійти через {provider}"
+  },
+  "projects": {
+    "tabName": "{value, select, projects {Проекти} project {Відгуки} other {Проекти}}",
+    "description": "{value, select, projects {Ваші проекти} project {Ваші відгуки} other {Проекти}}",
+    "openGraph": {
+      "title": "Відстежуйте ваші відгуки та співбесіди Open Graph title",
+      "description": "Відстежуйте ваші відгуки та співбесіди Open Graph description"
+    },
+    "actions": {
+      "add": "Додати проект",
+      "edit": "Редагувати проект",
+      "delete": "Видалити проект",
+      "view": "Переглянути проект"
+    },
+    "card": {
+      "description": "Опис",
+      "applications": "{count, plural, =0 {відгуків} =1 {відгук} other {відгуків}}",
+      "status": {
+        "applied": "Подано",
+        "interview": "Співбесіда",
+        "screening": "Скрінінг",
+        "offer": "Оффер",
+        "rejected": "Відхилено",
+        "accepted": "Прийнято",
+        "withdrawn": "Відкликано",
+        "final": "Фінальний етап"
+      }
+    }
+  },
+  "application": {
+    "card": {
+      "status": {
+        "applied": "Подано",
+        "screening": "Скрінінг",
+        "interview": "Співбесіда",
+        "final": "Фінальний етап",
+        "offer": "Оффер",
+        "rejected": "Відхилено",
+        "withdrawn": "Відкликано",
+        "accepted": "Прийнято"
+      },
+      "workType": {
+        "remote": "Віддалено",
+        "onsite": "Офіс",
+        "hybrid": "Гібрид"
+      },
+      "employmentType": {
+        "fulltime": "Повна зайнятість",
+        "parttime": "Часткова зайнятість",
+        "contract": "Контракт",
+        "internship": "Стажування"
+      }
+    }
+  },
+  "header": {
+    "menu": {
+      "settings": "Налаштування",
+      "signout": "Вийти"
+    }
+  },
+  "sidebar": {
+    "developedBy": "Розробка",
+    "socials": "Соціальні мережі",
+    "version": "Версія"
+  }
+}

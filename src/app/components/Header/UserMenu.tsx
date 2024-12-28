@@ -2,6 +2,7 @@ import { User } from 'next-auth';
 import { signOut } from 'next-auth/react';
 import { LogOut, Settings, Clock, Sun, Moon, Monitor } from 'lucide-react';
 import { useTheme } from 'next-themes';
+import { useTranslations } from 'next-intl';
 
 import { cn } from '@/lib/utils';
 
@@ -22,6 +23,7 @@ const menuItemClasses = 'hover:cursor-pointer';
 
 export function UserAvatar({ name, image }: User) {
   const { theme, setTheme } = useTheme();
+  const t = useTranslations('header.menu');
 
   return (
     <DropdownMenu>
@@ -54,7 +56,7 @@ export function UserAvatar({ name, image }: User) {
           <DropdownMenuSeparator />
           <DropdownMenuItem disabled className={cn(menuItemClasses)}>
             <Settings />
-            <span>Settings</span>
+            <span>{t('settings')}</span>
             <DropdownMenuShortcut className="[&_svg]:size-3">
               <Clock />
             </DropdownMenuShortcut>
@@ -64,7 +66,7 @@ export function UserAvatar({ name, image }: User) {
         <DropdownMenuGroup>
           <DropdownMenuItem className={menuItemClasses} onClick={() => signOut()}>
             <LogOut />
-            <span>Sign out</span>
+            <span>{t('signout')}</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>
